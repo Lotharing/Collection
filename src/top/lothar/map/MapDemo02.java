@@ -19,7 +19,11 @@ public class MapDemo02 {
 	int size;
 	
 	/**
-	 * 
+	 * 创建键值对对象
+	 * 把key值用hashCode进行编码，对数组取余数
+	 * 如果数组这个位置null 创建链表把链表放在数组这个位置，然后把键值对对象放在链表中
+	 * 如果这个位置不是null 得到该位置的链表对象，遍历该链表，如果其中的已存在key值与将要存入的key编码后数值相同则覆盖
+	 * 如果不相同则直接把键值对对象直接添加进该链表
 	 * @param key
 	 * @param value
 	 */
@@ -47,7 +51,8 @@ public class MapDemo02 {
 		}
 	}
 	/**
-	 * 
+	 * 得到想要获取key的hashCode对数组取余后的编码
+	 * 不为空时遍历此位置的链表，取出与该key值相同的value值
 	 * @param key
 	 * @return
 	 */
