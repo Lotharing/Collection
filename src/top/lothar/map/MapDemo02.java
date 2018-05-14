@@ -9,6 +9,8 @@ import java.util.LinkedList;
  * 在编码对数组长度取余的过程中，会出现不同对象在同一个数组位置
  * 数组的每个位置存放链表这样就可以实现，同一位置存放多个hashCode对数组长度取余后相同的键值对对象
  * 如果链表上元素多点需要遍历，不过相对于遍历所有对象，效率是明显的提升
+ * 
+ * hashCode相等的两个key不一定equals相等，equals相等的两个key hashCode一定相同《存放数组时的根据》
  * @author Lothar
  *
  */
@@ -19,6 +21,8 @@ public class MapDemo02 {
 	int size;
 	
 	/**
+	 * 
+	 * hash优化防止出现负数异常情况
 	 * 创建键值对对象
 	 * 把key值用hashCode进行编码，对数组取余数
 	 * 如果数组这个位置null 创建链表把链表放在数组这个位置，然后把键值对对象放在链表中
@@ -31,7 +35,10 @@ public class MapDemo02 {
 		
 		Entry e = new Entry(key, value);
 		
-		int a = key.hashCode()%arr.length;
+		int hash = key.hashCode();
+		hash = hash<0?-hash:hash;
+	
+		int a = hash%arr.length;
 		
 		if(arr[a]==null){
 			LinkedList list = new LinkedList();
@@ -51,6 +58,7 @@ public class MapDemo02 {
 		}
 	}
 	/**
+	 * 优化hashCode
 	 * 得到想要获取key的hashCode对数组取余后的编码
 	 * 不为空时遍历此位置的链表，取出与该key值相同的value值
 	 * @param key
@@ -58,7 +66,9 @@ public class MapDemo02 {
 	 */
 	public Object get(Object key){
 		
-		int a = key.hashCode()%arr.length;
+		int hash = key.hashCode();
+		hash = hash<0?-hash:hash;
+		int a = hash%arr.length;
 		
 		if(arr[a]!=null){
 			LinkedList list = arr[a];
