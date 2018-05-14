@@ -142,7 +142,7 @@ public class LinkedListDemo {
 			}else{
 				temp = last;
 				for(int i =size-1 ;i >index; i--){
-					temp = temp.next;
+					temp = temp.previous;
 				}
 			}
 		}
