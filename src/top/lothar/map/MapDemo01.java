@@ -1,10 +1,16 @@
 package top.lothar.map;
-
-public class MapDemo {
+/**
+ * 对Map的简单实现，效率低
+ * 取时候需要遍历，效率低
+ * Demo02是对此问题的近一步解决
+ * @author Lothar
+ *
+ */
+public class MapDemo01 {
 
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
-		MapDemo mp = new MapDemo();
+		MapDemo01 mp = new MapDemo01();
 		mp.put(new Integer(1), "23231");
 //		mp.put(new Integer(1), "23232");
 		
