@@ -125,15 +125,25 @@ public class LinkedListDemo {
 	}
 	/**
 	 * 获得相应位置结点
+	 * 
+	 * 算法优化通过折半，快速查找所需要的结点位置
 	 * @param index
 	 * @return
 	 */
 	public Node node(int index){
 		Node temp = null;
 		if(first!=null){
-			temp = first;
-			for(int i = 0 ; i <index ; i++){
-				temp = temp.next;
+			
+			if(index < (size >> 1)){
+				temp = first;
+				for(int i = 0 ; i <index ; i++){
+					temp = temp.next;
+				}
+			}else{
+				temp = last;
+				for(int i =size-1 ;i >index; i--){
+					temp = temp.next;
+				}
 			}
 		}
 		return temp;
